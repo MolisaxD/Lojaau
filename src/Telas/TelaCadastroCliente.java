@@ -3,6 +3,8 @@ package Telas;
 import Classes.Clientes;
 import Classes.PessoaFisica;
 import DatabaseConnection.DBConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TelaCadastroCliente extends javax.swing.JFrame {
     DBConnection db = new DBConnection();
@@ -213,10 +215,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         }
 
         try {
-            txtDataNas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataNas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtDataNas.setToolTipText("");
 
         try {
             txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -535,14 +538,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBairroActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        // TODO add your handling code here:
+
         Clientes cli = new Clientes();
-        PessoaFisica pf = new PessoaFisica();
-        pf.setNome_pessoa_fisica(txtNome.getText());
-        pf.setSobrenome_pessoa_fisica(txtSobrenome.getText());
-        pf.setCpf_pessoa_fisica(txtCpf.getText());
-        pf.setRg_pessoa_fisica(txtRg.getText());
-        pf.setData_nascimento_pessoa_fisica(txtDataNas.getText());
         cli.setTelefone_cliente(txtTelefone.getText());
         cli.setCep_cliente(txtCep.getText());
         cli.setLogradouro_cliente(txtLogradouro.getText());
@@ -551,15 +548,30 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         cli.setCidade_cliente(txtCidade.getText());
         cli.setEstado_cliente(txtEstado.getText());
         cli.setPais_cliente(txtPais.getText());
+        db.createClientes(cli);     
         
-        db.createClientes(cli);
+        PessoaFisica pf = new PessoaFisica();
+        pf.setId_cliente(cli.getId_cliente());
+        pf.setNome_pessoa_fisica(txtNome.getText());
+        pf.setSobrenome_pessoa_fisica(txtSobrenome.getText());
+        pf.setCpf_pessoa_fisica(txtCpf.getText());
+        pf.setRg_pessoa_fisica(txtRg.getText());
+        
+        //Formatar data nasc
+        String dataNasc = (txtDataNas.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataConvertida = new Date();
+        pf.setData_nascimento_pessoa_fisica(sdf.format(dataConvertida));
+        
+        
         db.createPessoaFisica(pf);
+        
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void rdJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdJuridicoActionPerformed
-             TelaCadastroClienteJ tccj =new TelaCadastroClienteJ();
-             tccj.setVisible(true);
-             setVisible(false);
+        TelaCadastroClienteJ tccj =new TelaCadastroClienteJ();
+        tccj.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_rdJuridicoActionPerformed
 
     private void rdFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdFisicoActionPerformed

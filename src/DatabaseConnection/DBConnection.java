@@ -25,11 +25,11 @@ import java.util.ArrayList;
 public class DBConnection {
 
     //Colocar o nome do banco de dados que você criou
-    private static final String URL = "jdbc:mysql://192.168.10.131:3306/lojaVeiculos";
+    private static final String URL = "jdbc:mysql://localhost:3308/lojaVeiculos";
     //Colocar o usuario que loga no MySQL Workbench
-    private static final String USER = "estela";
+    private static final String USER = "root";
     //Colocar a senha que loga no MySQL Workbench
-    private static final String PASSWORD = "luiz";
+    private static final String PASSWORD = "";
 
     //Método que faz a conexão com o banco de dados
     public static Connection GetConnection() {
@@ -347,8 +347,8 @@ public class DBConnection {
     public void createCores(Cores cor) {
         String query = "INSERT INTO cores (nome_cor) VALUES (?)";
         try (
-                Connection conn = GetConnection();
-                 PreparedStatement stmt = conn.prepareStatement(query)) {
+            Connection conn = GetConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, cor.getNome_cor());
             stmt.execute();
         } catch (SQLException e) {
@@ -519,7 +519,7 @@ public class DBConnection {
         }
     }
 
-    public ArrayList<Combustiveis> readAllAnoCombustiveis() {
+    public ArrayList<Combustiveis> readAllCombustiveis() {
         ArrayList<Combustiveis> combustiveis = new ArrayList<>();
         String query = "SELECT * FROM combustiveis";
         try (
@@ -692,8 +692,8 @@ public class DBConnection {
        public void createClientes(Clientes clientes) {
         String query = "INSERT INTO clientes (cep_cliente, telefone_cliente, logradouro_cliente, numero_casa_cliente, bairro_cliente, cidade_cliente, estado_cliente, pais_cliente) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (
-                Connection conn = GetConnection();
-                 PreparedStatement stmt = conn.prepareStatement(query)) {
+            Connection conn = GetConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, clientes.getCep_cliente());
             stmt.setString(2, clientes.getTelefone_cliente());
             stmt.setString(3, clientes.getLogradouro_cliente());

@@ -33,12 +33,6 @@ public class TelaPerfil extends javax.swing.JFrame {
         mnoFuncionario = new javax.swing.JMenuItem();
         mnoVeiculo = new javax.swing.JMenuItem();
         mnoModelo = new javax.swing.JMenuItem();
-        mnoMarca = new javax.swing.JMenuItem();
-        mnoCor = new javax.swing.JMenuItem();
-        mnoAno_Fab = new javax.swing.JMenuItem();
-        mnoAno_Modelo = new javax.swing.JMenuItem();
-        mnoCombustivel = new javax.swing.JMenuItem();
-        mnoCambio = new javax.swing.JMenuItem();
         mnoRelatorio = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         mnoSobre = new javax.swing.JMenuItem();
@@ -207,49 +201,6 @@ public class TelaPerfil extends javax.swing.JFrame {
         });
         mnoCadastros.add(mnoModelo);
 
-        mnoMarca.setText("Marca");
-        mnoMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnoMarcaActionPerformed(evt);
-            }
-        });
-        mnoCadastros.add(mnoMarca);
-
-        mnoCor.setText("Cor");
-        mnoCor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnoCorActionPerformed(evt);
-            }
-        });
-        mnoCadastros.add(mnoCor);
-
-        mnoAno_Fab.setText("Ano de Fabricação");
-        mnoAno_Fab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnoAno_FabActionPerformed(evt);
-            }
-        });
-        mnoCadastros.add(mnoAno_Fab);
-
-        mnoAno_Modelo.setText("Ano de Modelo");
-        mnoAno_Modelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnoAno_ModeloActionPerformed(evt);
-            }
-        });
-        mnoCadastros.add(mnoAno_Modelo);
-
-        mnoCombustivel.setText("Combustível");
-        mnoCombustivel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnoCombustivelActionPerformed(evt);
-            }
-        });
-        mnoCadastros.add(mnoCombustivel);
-
-        mnoCambio.setText("Câmbio");
-        mnoCadastros.add(mnoCambio);
-
         jMenuBar1.add(mnoCadastros);
 
         mnoRelatorio.setText("Relatório");
@@ -405,42 +356,6 @@ public class TelaPerfil extends javax.swing.JFrame {
         tvv.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btVendasActionPerformed
-
-    private void mnoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoMarcaActionPerformed
-        String marca = javax.swing.JOptionPane.showInputDialog("Insira o nome da marca:");
-        //Esperando finalizar a classe DBConnection
-        //db.createMarca(marca);
-        /**/
-        
-    }//GEN-LAST:event_mnoMarcaActionPerformed
-
-    private void mnoCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoCorActionPerformed
-        String cor = javax.swing.JOptionPane.showInputDialog("Insira o nome da cor:");
-        //Esperando finalizar a classe DBConnection
-        //db.createMarca(cor);
-        /**/
-    }//GEN-LAST:event_mnoCorActionPerformed
-
-    private void mnoAno_FabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoAno_FabActionPerformed
-        String ano_fab = javax.swing.JOptionPane.showInputDialog("Insira o novo ano de fabricação:");
-        //Esperando finalizar a classe DBConnection
-        //db.createMarca(ano_fab);
-        /**/
-    }//GEN-LAST:event_mnoAno_FabActionPerformed
-
-    private void mnoAno_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoAno_ModeloActionPerformed
-        String ano_model = javax.swing.JOptionPane.showInputDialog("Insira o novo ano de modelo:");
-        //Esperando finalizar a classe DBConnection
-        //db.createMarca(ano_model);
-        /**/
-    }//GEN-LAST:event_mnoAno_ModeloActionPerformed
-
-    private void mnoCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoCombustivelActionPerformed
-        String combustivel = javax.swing.JOptionPane.showInputDialog("Insira o nome do combustível novo:");
-        //Esperando finalizar a classe DBConnection
-        //db.createMarca(combustivel);
-        /**/
-    }//GEN-LAST:event_mnoCombustivelActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -489,17 +404,11 @@ public class TelaPerfil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lbData;
     private javax.swing.JLabel lbNomeFun;
-    private javax.swing.JMenuItem mnoAno_Fab;
-    private javax.swing.JMenuItem mnoAno_Modelo;
     private javax.swing.JMenu mnoCadastros;
-    private javax.swing.JMenuItem mnoCambio;
     private javax.swing.JMenuItem mnoCliente;
-    private javax.swing.JMenuItem mnoCombustivel;
-    private javax.swing.JMenuItem mnoCor;
     private javax.swing.JMenuItem mnoFuncionario;
     private javax.swing.JMenuItem mnoLogout;
     private javax.swing.JMenuItem mnoManual;
-    private javax.swing.JMenuItem mnoMarca;
     private javax.swing.JMenuItem mnoModelo;
     private javax.swing.JMenu mnoRelatorio;
     private javax.swing.JMenuItem mnoSair;

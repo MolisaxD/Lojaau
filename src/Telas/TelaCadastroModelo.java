@@ -157,7 +157,11 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
             }
         });
 
-        cbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMarcaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -369,7 +373,7 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoFuncionarioActionPerformed
-        TelaCadastroFuncionario tcf= new TelaCadastroFuncionario();
+        TelaCadastroFuncionario tcf = new TelaCadastroFuncionario();
         tcf.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_mnoFuncionarioActionPerformed
@@ -435,6 +439,10 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
     private void txtMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMotorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMotorActionPerformed
+
+    private void cbMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMarcaActionPerformed
 
     /**
      * @param args the command line arguments

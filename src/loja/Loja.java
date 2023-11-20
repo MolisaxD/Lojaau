@@ -4,6 +4,7 @@
  */
 package loja;
 
+import DatabaseConnection.DBConnection;
 import Telas.TelaCadastroFuncionario;
 import Telas.TelaLogin;
 import Telas.TelaPerfil;
@@ -18,6 +19,7 @@ public class Loja {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        DBConnection db = new DBConnection();
         TelaLogin t= new TelaLogin();
         t.setVisible(true);
     }

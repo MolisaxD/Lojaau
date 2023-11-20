@@ -1,75 +1,81 @@
 package Telas;
 
+import Classes.AnoFabricacao;
+import Classes.AnoModelo;
+import Classes.Cambios;
+import Classes.Combustiveis;
+import Classes.Cores;
+import Classes.Modelos;
 import Classes.Veiculos;
 import DatabaseConnection.DBConnection;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class TelaCadastroVeiculo extends javax.swing.JFrame {
     
     DBConnection db = new DBConnection();
-
+    ArrayList<Modelos> listaModelos = new ArrayList();
+    ArrayList<Cores> listaCores = new ArrayList();
+    ArrayList<AnoFabricacao> listaAno_Fab = new ArrayList();
+    ArrayList<AnoModelo> listaAno_Modelo = new ArrayList();
+    ArrayList<Combustiveis> listaCombustiveis = new ArrayList();
+    ArrayList<Cambios> listaCambios = new ArrayList();
 
     public TelaCadastroVeiculo() {
         initComponents();
+        preencherCbCor();
     }
 
-
-    
-    //Esperando finalizar a classe DBConnection
     public void preencherCbModelo() {
-        /*ArrayList<Modelos> listaModelos = new ArrayList();
         listaModelos = db.readAllModelos();
-        for(i = 0; i < listaModelos.size(); i++) {
-            cbModelo.addItem(listaModelos.get(i).getNome_modelo);
+        for(int i = 0; i < listaModelos.size(); i++) {
+            cbModelo.addItem(listaModelos.get(i).getNome_modelo());
         }
-        */
+        
     }
     
-    public void prencherCbCor() {
-        /*ArrayList<String> listaCores = new ArrayList();
+    public void preencherCbCor() {
         listaCores = db.readAllCores();
-        for(i = 0; i < listaCores.size(); i++) {
-            cbModelo.addItem(listaCores[i]);
+        for(int i = 0; i < listaCores.size(); i++) {
+            cbCor.addItem(listaCores.get(i).getNome_cor());
         }
-        */
+        
     }
     
     public void preencherCbAno_Fab() {
-        /*ArrayList<String> listaAno_Fab = new ArrayList();
-        listaAno_Fab = db.readAllAno_Fab();
-        for(i = 0; i < listaAno_Fab.size(); i++) {
-            cbFabricacao.addItem(listaAno_Fab[i]);
+        listaAno_Fab = db.readAllAnoFabricacao();
+        for(int i = 0; i < listaAno_Fab.size(); i++) {
+            cbFabricacao.addItem(String.valueOf(listaAno_Fab.get(i).getAno_fabricacao()));
         }
-        */
+        
     }
     
     public void preencherCbAno_Modelo() {
-        /*ArrayList<String> listaAno_Modelo = new ArrayList();
-        listaAno_Modelo = db.readAllAno_Modelo();
-        for(i = 0; i < listaAno_Model.size(); i++) {
-            cbAnoModelo.addItem(listaAno_Model[i]);
+
+        listaAno_Modelo = db.readAllAnoModelo();
+        for(int i = 0; i < listaAno_Modelo.size(); i++) {
+            cbAnoModelo.addItem(String.valueOf(listaAno_Modelo.get(i).getAno_modelo()));
         }
-        */
+        
     }
     
     public void preencherCbCombustivel() {
-        /*ArrayList<String> listaCombustiveis = new ArrayList();
+        
         listaCombustiveis = db.readAllCombustiveis();
-        for(i = 0; i < listaAno_Fab.size(); i++) {
-            cbCombustivel.addItem(listaCombustiveis[i]);
+        for(int i = 0; i < listaAno_Fab.size(); i++) {
+            cbCombustivel.addItem(listaCombustiveis.get(i).getTipo_combustivel());
         }
-        */
+        
     }
     
     public void preencherCbCambio() {
-        /*ArrayList<String> listaCambios = new ArrayList();
+        
         listaCambios = db.readAllCambios();
-        for(i = 0; i < listaAno_Fab.size(); i++) {
-            cbCambio.addItem(listaCambios[i]);
+        for(int i = 0; i < listaAno_Fab.size(); i++) {
+            cbCambio.addItem(listaCambios.get(i).getTipo_cambio());
         }
-        */
     }
     
-    /**/
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,6 +107,11 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         txtPreco = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         cbModelo = new javax.swing.JComboBox<>();
+        btAddCor = new javax.swing.JButton();
+        btAddAnoModelo = new javax.swing.JButton();
+        btAddAnoFab = new javax.swing.JButton();
+        btAddCombustivel = new javax.swing.JButton();
+        btAddCambio = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnoCadastros = new javax.swing.JMenu();
         mnoCliente = new javax.swing.JMenuItem();
@@ -132,7 +143,7 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(441, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbNomeFun)
@@ -180,20 +191,22 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         jLabel9.setText("Cambio");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("*Chassi");
+        jLabel10.setText("Chassi");
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Combustível");
 
-        cbCor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFabricacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFabricacaoActionPerformed(evt);
+            }
+        });
 
-        cbAnoModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbFabricacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbCombustivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbCambio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCombustivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCombustivelActionPerformed(evt);
+            }
+        });
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponível", "Em manutenção", "Vendido" }));
 
@@ -207,62 +220,83 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Modelo");
 
-        cbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btAddCor.setText("+");
+        btAddCor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddCorActionPerformed(evt);
+            }
+        });
+
+        btAddAnoModelo.setText("+");
+        btAddAnoModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddAnoModeloActionPerformed(evt);
+            }
+        });
+
+        btAddAnoFab.setText("+");
+
+        btAddCombustivel.setText("+");
+
+        btAddCambio.setText("+");
+        btAddCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddCambioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(0, 36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btAddCor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btAddAnoModelo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btAddCambio, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btVoltar)
+                                .addGap(206, 206, 206))
+                            .addComponent(btCadastrar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(26, 26, 26))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(cbAnoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbCor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbCambio, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtChassi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel9)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbModelo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbCombustivel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbFabricacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(cbCor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                            .addComponent(jLabel10)
-                                                            .addComponent(jLabel6)
-                                                            .addComponent(cbCambio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                                .addGap(52, 52, 52))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(cbAnoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel4))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(cbModelo, javax.swing.GroupLayout.Alignment.LEADING, 0, 105, Short.MAX_VALUE)
-                                                .addComponent(cbCombustivel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(cbFabricacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                    .addComponent(jLabel9)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btCadastrar)))
-                                .addGap(2, 2, 2)))
-                        .addGap(69, 69, 69))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btVoltar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(btAddAnoFab)
+                                    .addComponent(btAddCombustivel))))
+                        .addGap(33, 33, 33))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,35 +304,45 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btVoltar)
                 .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbFabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAddCor))
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel4)
-                        .addGap(1, 1, 1)
-                        .addComponent(cbAnoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbAnoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAddAnoModelo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAddCambio)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbFabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAddAnoFab))
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAddCombustivel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -318,15 +362,15 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(296, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -471,21 +515,59 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setPreco_veiculo(Float.parseFloat(txtPreco.getText()));
         veiculo.setStatus_veiculo(cbStatus.getSelectedItem().toString());
         
-        //Esperando finalizar a classe DBConnection
-        /*veiculo.setId_modelo(cbModelo.getSelectedItem().toString());
-        veiculo.setId_cor("");
-        veiculo.setId_ano_fabricacao("");
-        veiculo.setId_ano_modelo("");
-        veiculo.setId_combustivel("");
-        veiculo.setId_cambio("");*/
+        veiculo.setId_modelo(Integer.parseInt(cbModelo.getSelectedItem().toString()));
+        veiculo.setId_cor(Integer.parseInt(cbCor.getSelectedItem().toString()));
+        veiculo.setId_ano_fabricacao(Integer.parseInt(cbFabricacao.getSelectedItem().toString()));
+        veiculo.setId_ano_modelo(Integer.parseInt(cbAnoModelo.getSelectedItem().toString()));
+        veiculo.setId_combustivel(Integer.parseInt(cbCombustivel.getSelectedItem().toString()));
+        veiculo.setId_cambio(Integer.parseInt(cbCambio.getSelectedItem().toString()));
         
-        //db.createVeiculo(veiculo);
-        /**/
+        db.createVeiculos(veiculo);
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void mnoVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnoVeiculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnoVeiculoActionPerformed
+
+    private void btAddCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCorActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira a nova cor:");
+        Cores novaCor = new Cores();
+        novaCor.setNome_cor(input);
+        db.createCores(novaCor);
+    }//GEN-LAST:event_btAddCorActionPerformed
+
+    private void btAddAnoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddAnoModeloActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira o novo ano de modelo:");
+        AnoModelo novoAnoModelo = new AnoModelo();
+        novoAnoModelo.setAno_modelo(Integer.parseInt(input));
+        db.createAnoModelo(novoAnoModelo);
+    }//GEN-LAST:event_btAddAnoModeloActionPerformed
+
+    private void btAddCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCambioActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira a nova cor:");
+        Cambios novoCambio = new Cambios();
+        novoCambio.setTipo_cambio(input);
+        db.createCambios(novoCambio);
+    }//GEN-LAST:event_btAddCambioActionPerformed
+
+    private void cbFabricacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFabricacaoActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira a nova cor:");
+        AnoFabricacao novoAnoFabricacao = new AnoFabricacao();
+        novoAnoFabricacao.setAno_fabricacao(Integer.parseInt(input));
+        db.createAnoFabricacao(novoAnoFabricacao);
+    }//GEN-LAST:event_cbFabricacaoActionPerformed
+
+    private void cbCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCombustivelActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira a nova cor:");
+        Combustiveis novoCombustivel = new Combustiveis();
+        novoCombustivel.setTipo_combustivel(input);
+        db.createCombustiveis(novoCombustivel);
+    }//GEN-LAST:event_cbCombustivelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -523,6 +605,11 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddAnoFab;
+    private javax.swing.JButton btAddAnoModelo;
+    private javax.swing.JButton btAddCambio;
+    private javax.swing.JButton btAddCombustivel;
+    private javax.swing.JButton btAddCor;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox<String> cbAnoModelo;
@@ -562,4 +649,5 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
     private javax.swing.JTextField txtChassi;
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
+
 }
