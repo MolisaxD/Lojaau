@@ -402,23 +402,23 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         // TODO add your handling code here:
-        Perfis funcionario = new Perfis();
-        Usuarios usuario = new Usuarios();
+        Perfis perfil = new Perfis();
         
         if(rdAdm.isSelected()) {
-            funcionario.setTipo_perfil("ADM");
+            perfil.setTipo_perfil("ADM");
         } else if(rdVendedor.isSelected()) {
-            funcionario.setTipo_perfil("Vendedor");
+            perfil.setTipo_perfil("Vendedor");
         }
-        funcionario.setNome_perfil(txtNome.getText());
-        funcionario.setCpf_perfil(txtCpf.getText());
-        funcionario.setRg_perfil(txtRg.getText());
-        funcionario.setTelefone_perfil(txtTelefone.getText());
+        perfil.setNome_perfil(txtNome.getText());
+        perfil.setCpf_perfil(txtCpf.getText());
+        perfil.setRg_perfil(txtRg.getText());
+        perfil.setTelefone_perfil(txtTelefone.getText());
+        db.createPerfis(perfil);
+        
+        Usuarios usuario = new Usuarios();
         
         usuario.setLogin_usuario(txtLogin.getText());
         usuario.setSenha_usuario(txtsenha.getText());
-        
-        db.createPerfis(funcionario);
         db.createUsuarios(usuario);
         
     }//GEN-LAST:event_btCadastrarActionPerformed

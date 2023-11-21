@@ -23,7 +23,12 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
 
     public TelaCadastroVeiculo() {
         initComponents();
+        preencherCbModelo();
         preencherCbCor();
+        preencherCbAno_Fab();
+        preencherCbAno_Modelo();
+        preencherCbCombustivel();
+        preencherCbCambio();
     }
 
     public void preencherCbModelo() {

@@ -465,7 +465,6 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
         novaMarca.setNome_marca(input);
         db.createMarcas(novaMarca);
         
-        preencherCbMarcas();
     }//GEN-LAST:event_btAddMarcaActionPerformed
 
     /**

@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/DatabaseConnection/DBConnection.java</file>
             <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/Telas/TelaCadastroModelo.java</file>
+            <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/Telas/TelaCadastroClienteJ.java</file>
             <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/Telas/TelaCadastroVeiculo.java</file>
+            <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/Telas/TelaCadastroFuncionario.java</file>
+            <file>file:/C:/Users/melis/OneDrive/Documents/NetBeansProjects/Lojaau/src/Telas/TelaLogin.java</file>
         </group>
     </open-files>
 </project-private>
