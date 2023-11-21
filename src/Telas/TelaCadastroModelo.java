@@ -5,6 +5,7 @@ import Classes.Marcas;
 import Classes.Modelos;
 import DatabaseConnection.DBConnection;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class TelaCadastroModelo extends javax.swing.JFrame {
     
@@ -22,6 +23,7 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
     }
     
     public void preencherCbMarcas() {
+        cbMarca.removeAllItems();
         for(int i = 0; i < listaMarcas.size(); i++) {
             cbMarca.addItem(listaMarcas.get(i).getNome_marca());
         }
@@ -57,6 +59,7 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
         txtTipo = new javax.swing.JTextField();
         btVoltar = new javax.swing.JButton();
         cbMarca = new javax.swing.JComboBox<>();
+        btAddMarca = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnoCadastros = new javax.swing.JMenu();
         mnoCliente = new javax.swing.JMenuItem();
@@ -163,6 +166,13 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
             }
         });
 
+        btAddMarca.setText("+");
+        btAddMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddMarcaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -176,6 +186,8 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btAddMarca)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -218,17 +230,19 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
                                     .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(36, 36, 36))))
+                        .addGap(31, 31, 31))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(btVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(4, 4, 4)
-                .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAddMarca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -272,7 +286,7 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(358, Short.MAX_VALUE)
+                .addContainerGap(363, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -444,6 +458,16 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbMarcaActionPerformed
 
+    private void btAddMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddMarcaActionPerformed
+        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Insira a nova marca: ");
+        Marcas novaMarca = new Marcas();
+        novaMarca.setNome_marca(input);
+        db.createMarcas(novaMarca);
+        
+        preencherCbMarcas();
+    }//GEN-LAST:event_btAddMarcaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,6 +504,7 @@ public class TelaCadastroModelo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddMarca;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox<String> cbMarca;

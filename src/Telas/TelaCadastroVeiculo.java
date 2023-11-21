@@ -235,6 +235,11 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         });
 
         btAddAnoFab.setText("+");
+        btAddAnoFab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddAnoFabActionPerformed(evt);
+            }
+        });
 
         btAddCombustivel.setText("+");
 
@@ -535,6 +540,7 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         Cores novaCor = new Cores();
         novaCor.setNome_cor(input);
         db.createCores(novaCor);
+        
     }//GEN-LAST:event_btAddCorActionPerformed
 
     private void btAddAnoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddAnoModeloActionPerformed
@@ -568,6 +574,10 @@ public class TelaCadastroVeiculo extends javax.swing.JFrame {
         novoCombustivel.setTipo_combustivel(input);
         db.createCombustiveis(novoCombustivel);
     }//GEN-LAST:event_cbCombustivelActionPerformed
+
+    private void btAddAnoFabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddAnoFabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAddAnoFabActionPerformed
 
     /**
      * @param args the command line arguments
